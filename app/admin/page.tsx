@@ -34,12 +34,10 @@ export default function AdminPage() {
 
 	const fetchPosts = async () => {
 		try {
-			// Get the Firebase Realtime Database URL from .env
 			const dbUrl =
 				process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL ||
 				"https://solarleveling-d3008-default-rtdb.firebaseio.com";
 
-			// Fetch all blog posts from the Realtime Database
 			const response = await fetch(`${dbUrl}/blog-posts.json`);
 
 			if (!response.ok) {
@@ -49,7 +47,6 @@ export default function AdminPage() {
 			const data = await response.json();
 
 			if (data) {
-				// Convert the data object to an array of posts with IDs
 				const postsArray = Object.entries(data).map(
 					([id, postData]: [string, any]) => ({
 						id,
@@ -57,7 +54,6 @@ export default function AdminPage() {
 					})
 				);
 
-				// Sort posts by createdAt (newest first)
 				postsArray.sort(
 					(a, b) =>
 						new Date(b.createdAt).getTime() -
@@ -83,12 +79,10 @@ export default function AdminPage() {
 		}
 
 		try {
-			// Get the Firebase Realtime Database URL from .env
 			const dbUrl =
 				process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL ||
 				"https://solarleveling-d3008-default-rtdb.firebaseio.com";
 
-			// Delete the post from the Realtime Database
 			const response = await fetch(`${dbUrl}/blog-posts/${id}.json`, {
 				method: "DELETE",
 			});
@@ -97,7 +91,6 @@ export default function AdminPage() {
 				throw new Error("Failed to delete post");
 			}
 
-			// Update the local state
 			setPosts(posts.filter((post) => post.id !== id));
 		} catch (err) {
 			console.error("Error deleting post:", err);

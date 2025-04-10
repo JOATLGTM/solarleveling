@@ -6,7 +6,6 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
 	Card,
@@ -18,6 +17,7 @@ import {
 } from "@/components/ui/card";
 import { ArrowLeft, Upload, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
+import RichTextEditor from "@/components/rich-text-editor";
 
 export default function NewPostPage() {
 	const router = useRouter();
@@ -193,13 +193,9 @@ export default function NewPostPage() {
 
 							<div className="space-y-2">
 								<Label htmlFor="content">Content</Label>
-								<Textarea
-									id="content"
-									value={content}
-									onChange={(e) => setContent(e.target.value)}
-									placeholder="Write your blog post content here..."
-									className="min-h-[200px]"
-									required
+								<RichTextEditor
+									content={content}
+									onChange={setContent}
 								/>
 							</div>
 						</CardContent>

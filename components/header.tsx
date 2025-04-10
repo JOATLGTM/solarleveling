@@ -20,33 +20,39 @@ export default function Header() {
 				</div>
 				<nav className="hidden md:flex items-center gap-6">
 					<Link
-						href="#benefits"
+						href="/#benefits"
 						className="text-sm font-medium hover:underline underline-offset-4"
 					>
 						Benefits
 					</Link>
 					<Link
-						href="#industry"
+						href="/#industry"
 						className="text-sm font-medium hover:underline underline-offset-4"
 					>
 						Industry Insights
 					</Link>
 					<Link
-						href="#ppa"
+						href="/#ppa"
 						className="text-sm font-medium hover:underline underline-offset-4"
 					>
 						PPA
 					</Link>
 					<Link
-						href="#qualify"
+						href="/#qualify"
 						className="text-sm font-medium hover:underline underline-offset-4"
 					>
 						Qualify
 					</Link>
+					<Link
+						href="/blogs"
+						className="text-sm font-medium hover:underline underline-offset-4"
+					>
+						Blogs
+					</Link>
 				</nav>
 				<div className="flex items-center gap-4">
 					<Button asChild className="hidden md:flex">
-						<Link href="#contact">Contact Us</Link>
+						<Link href="/#contact">Contact Us</Link>
 					</Button>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild className="md:hidden">
@@ -58,7 +64,7 @@ export default function Header() {
 						<DropdownMenuContent align="end" className="w-[200px]">
 							<DropdownMenuItem asChild>
 								<Link
-									href="#benefits"
+									href="/#benefits"
 									className="text-sm font-medium hover:underline underline-offset-4"
 								>
 									Benefits
@@ -66,7 +72,7 @@ export default function Header() {
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<Link
-									href="#industry"
+									href="/#industry"
 									className="text-sm font-medium hover:underline underline-offset-4"
 								>
 									Industry Insights
@@ -74,7 +80,7 @@ export default function Header() {
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<Link
-									href="#ppa"
+									href="/#ppa"
 									className="text-sm font-medium hover:underline underline-offset-4"
 								>
 									PPA
@@ -82,15 +88,23 @@ export default function Header() {
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<Link
-									href="#qualify"
+									href="/#qualify"
 									className="text-sm font-medium hover:underline underline-offset-4"
 								>
 									Qualify
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
+								<Link
+									href="/blogs"
+									className="text-sm font-medium hover:underline underline-offset-4"
+								>
+									Blogs
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
 								<Button asChild className="w-full">
-									<Link href="#contact">Contact Us</Link>
+									<Link href="/#contact">Contact Us</Link>
 								</Button>
 							</DropdownMenuItem>
 						</DropdownMenuContent>

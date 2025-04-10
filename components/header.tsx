@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Sun } from "lucide-react";
+import { Sun, Menu } from "lucide-react";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
 	return (
@@ -38,10 +44,57 @@ export default function Header() {
 						Qualify
 					</Link>
 				</nav>
-				<div>
-					<Button asChild>
+				<div className="flex items-center gap-4">
+					<Button asChild className="hidden md:flex">
 						<Link href="#contact">Contact Us</Link>
 					</Button>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild className="md:hidden">
+							<Button variant="ghost" size="icon">
+								<Menu className="h-5 w-5" />
+								<span className="sr-only">Toggle menu</span>
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end" className="w-[200px]">
+							<DropdownMenuItem asChild>
+								<Link
+									href="#benefits"
+									className="text-sm font-medium hover:underline underline-offset-4"
+								>
+									Benefits
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
+								<Link
+									href="#industry"
+									className="text-sm font-medium hover:underline underline-offset-4"
+								>
+									Industry Insights
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
+								<Link
+									href="#ppa"
+									className="text-sm font-medium hover:underline underline-offset-4"
+								>
+									PPA
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
+								<Link
+									href="#qualify"
+									className="text-sm font-medium hover:underline underline-offset-4"
+								>
+									Qualify
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
+								<Button asChild className="w-full">
+									<Link href="#contact">Contact Us</Link>
+								</Button>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 			</div>
 		</header>

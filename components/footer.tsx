@@ -18,86 +18,47 @@ export default function Footer() {
 							energy.
 						</p>
 					</div>
-					<div className="grid grid-cols-2 gap-4 md:col-span-2 md:grid-cols-3">
-						<div className="space-y-2">
-							<h3 className="text-sm font-medium">Company</h3>
-							<ul className="space-y-2 text-sm">
-								<li>
-									<Link
-										href="#"
-										className="text-muted-foreground hover:underline"
-									>
-										About Us
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="#"
-										className="text-muted-foreground hover:underline"
-									>
-										Our Team
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="#"
-										className="text-muted-foreground hover:underline"
-									>
-										Careers
-									</Link>
-								</li>
-							</ul>
-						</div>
-						<div className="space-y-2">
-							<h3 className="text-sm font-medium">Resources</h3>
-							<ul className="space-y-2 text-sm">
-								<li>
-									<Link
-										href="#"
-										className="text-muted-foreground hover:underline"
-									>
-										Blog
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="#"
-										className="text-muted-foreground hover:underline"
-									>
-										FAQ
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="#"
-										className="text-muted-foreground hover:underline"
-									>
-										Solar Calculator
-									</Link>
-								</li>
-							</ul>
-						</div>
-						<div className="space-y-2">
-							<h3 className="text-sm font-medium">Contact</h3>
-							<ul className="space-y-2 text-sm">
-								<li>
-									<Link
-										href="tel:+18005551234"
-										className="text-muted-foreground hover:underline"
-									>
-										(800) 555-1234
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="mailto:info@solarsolutions.com"
-										className="text-muted-foreground hover:underline"
-									>
-										info@solarsolutions.com
-									</Link>
-								</li>
-							</ul>
-						</div>
+					<div className="space-y-2">
+						<h3 className="text-sm font-medium">Resources</h3>
+						<ul className="space-y-2 text-sm">
+							<li>
+								<Link
+									href="#"
+									className="text-muted-foreground hover:underline"
+								>
+									Blog
+								</Link>
+							</li>
+							<li>
+								<Link
+									href="#"
+									className="text-muted-foreground hover:underline"
+								>
+									FAQ
+								</Link>
+							</li>
+						</ul>
+					</div>
+					<div className="space-y-2">
+						<h3 className="text-sm font-medium">Contact</h3>
+						<ul className="space-y-2 text-sm">
+							<li>
+								<Link
+									href="tel:+18005551234"
+									className="text-muted-foreground hover:underline"
+								>
+									(800) 555-1234
+								</Link>
+							</li>
+							<li>
+								<Link
+									href="mailto:solarlevelingg@gmail.com"
+									className="text-muted-foreground hover:underline"
+								>
+									solarlevelingg@gmail.com
+								</Link>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">

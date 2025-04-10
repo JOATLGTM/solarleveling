@@ -19,9 +19,11 @@ import { Phone, Mail, CheckCircle2 } from "lucide-react";
 
 export default function ContactSection() {
 	const [submitted, setSubmitted] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setError(null);
 		const form = e.target as HTMLFormElement;
 		const formData = new FormData(form);
 
@@ -37,10 +39,18 @@ export default function ContactSection() {
 			if (response.ok) {
 				setSubmitted(true);
 			} else {
-				// Handle error - you might want to show an error message to the user
-				console.error("Form submission failed");
+				// Handle error - show error message to the user
+				const errorData = await response.json();
+				setError(
+					errorData.error ||
+						"Form submission failed. Please try again."
+				);
+				console.error("Form submission failed:", errorData);
 			}
 		} catch (error) {
+			setError(
+				"An error occurred while submitting the form. Please try again."
+			);
 			console.error("Error submitting form:", error);
 		}
 	};
@@ -72,20 +82,22 @@ export default function ContactSection() {
 									<CardContent className="space-y-4">
 										<div className="grid gap-4 sm:grid-cols-2">
 											<div className="space-y-2">
-												<Label htmlFor="first-name">
+												<Label htmlFor="firstName">
 													First Name
 												</Label>
 												<Input
-													id="first-name"
+													id="firstName"
+													name="firstName"
 													required
 												/>
 											</div>
 											<div className="space-y-2">
-												<Label htmlFor="last-name">
+												<Label htmlFor="lastName">
 													Last Name
 												</Label>
 												<Input
-													id="last-name"
+													id="lastName"
+													name="lastName"
 													required
 												/>
 											</div>
@@ -94,6 +106,7 @@ export default function ContactSection() {
 											<Label htmlFor="email">Email</Label>
 											<Input
 												id="email"
+												name="email"
 												type="email"
 												required
 											/>
@@ -104,6 +117,7 @@ export default function ContactSection() {
 											</Label>
 											<Input
 												id="phone"
+												name="phone"
 												type="tel"
 												required
 											/>
@@ -112,10 +126,18 @@ export default function ContactSection() {
 											<Label htmlFor="message">
 												Message (Optional)
 											</Label>
-											<Textarea id="message" />
+											<Textarea
+												id="message"
+												name="message"
+											/>
 										</div>
 									</CardContent>
-									<CardFooter>
+									<CardFooter className="flex flex-col gap-4">
+										{error && (
+											<div className="w-full p-3 text-sm text-red-500 bg-red-50 rounded-md">
+												{error}
+											</div>
+										)}
 										<Button
 											type="submit"
 											className="w-full"
@@ -174,10 +196,10 @@ export default function ContactSection() {
 									<div>
 										<p className="font-medium">Email Us</p>
 										<a
-											href="mailto:info@solarsolutions.com"
+											href="mailto:solarlevelingg@gmail.com"
 											className="text-xl font-bold hover:underline"
 										>
-											info@solarsolutions.com
+											solarlevelingg@gmail.com
 										</a>
 									</div>
 								</div>

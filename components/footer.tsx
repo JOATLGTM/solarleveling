@@ -46,9 +46,7 @@ export default function Footer() {
 								<Link
 									href="tel:+18005551234"
 									className="text-muted-foreground hover:underline"
-								>
-									(800) 555-1234
-								</Link>
+								></Link>
 							</li>
 							<li>
 								<Link

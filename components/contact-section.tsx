@@ -20,12 +20,82 @@ import { Phone, Mail, CheckCircle2 } from "lucide-react";
 export default function ContactSection() {
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [formErrors, setFormErrors] = useState({
+		email: "",
+		phone: "",
+	});
+
+	const validateEmail = (email: string) => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	};
+
+	const validatePhone = (phone: string) => {
+		// Allow formats like: (123) 456-7890, 123-456-7890, 1234567890
+		const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		return phoneRegex.test(phone);
+	};
+
+	const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+
+		if (name === "email" && value) {
+			if (!validateEmail(value)) {
+				setFormErrors((prev) => ({
+					...prev,
+					email: "Please enter a valid email address",
+				}));
+			} else {
+				setFormErrors((prev) => ({ ...prev, email: "" }));
+			}
+		}
+
+		if (name === "phone" && value) {
+			if (!validatePhone(value)) {
+				setFormErrors((prev) => ({
+					...prev,
+					phone: "Please enter a valid phone number",
+				}));
+			} else {
+				setFormErrors((prev) => ({ ...prev, phone: "" }));
+			}
+		}
+	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setError(null);
 		const form = e.target as HTMLFormElement;
 		const formData = new FormData(form);
+
+		// Validate form before submission
+		const email = formData.get("email") as string;
+		const phone = formData.get("phone") as string;
+
+		let hasErrors = false;
+
+		if (!validateEmail(email)) {
+			setFormErrors((prev) => ({
+				...prev,
+				email: "Please enter a valid email address",
+			}));
+			hasErrors = true;
+		}
+
+		if (!validatePhone(phone)) {
+			setFormErrors((prev) => ({
+				...prev,
+				phone: "Please enter a valid phone number",
+			}));
+			hasErrors = true;
+		}
+
+		if (hasErrors) {
+			return;
+		}
+
+		setIsSubmitting(true);
 
 		try {
 			const response = await fetch("/api/contact", {
@@ -52,6 +122,8 @@ export default function ContactSection() {
 				"An error occurred while submitting the form. Please try again."
 			);
 			console.error("Error submitting form:", error);
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
@@ -109,7 +181,18 @@ export default function ContactSection() {
 												name="email"
 												type="email"
 												required
+												onBlur={handleBlur}
+												className={
+													formErrors.email
+														? "border-red-500 focus-visible:ring-red-500"
+														: ""
+												}
 											/>
+											{formErrors.email && (
+												<p className="text-sm text-red-500 mt-1">
+													{formErrors.email}
+												</p>
+											)}
 										</div>
 										<div className="space-y-2">
 											<Label htmlFor="phone">
@@ -120,7 +203,23 @@ export default function ContactSection() {
 												name="phone"
 												type="tel"
 												required
+												onBlur={handleBlur}
+												className={
+													formErrors.phone
+														? "border-red-500 focus-visible:ring-red-500"
+														: ""
+												}
+												placeholder="(123) 456-7890"
 											/>
+											<p className="text-xs text-muted-foreground">
+												Format: (123) 456-7890,
+												123-456-7890, or 1234567890
+											</p>
+											{formErrors.phone && (
+												<p className="text-sm text-red-500 mt-1">
+													{formErrors.phone}
+												</p>
+											)}
 										</div>
 										<div className="space-y-2">
 											<Label htmlFor="message">
@@ -141,8 +240,18 @@ export default function ContactSection() {
 										<Button
 											type="submit"
 											className="w-full"
+											disabled={isSubmitting}
 										>
-											Submit
+											{isSubmitting ? (
+												<>
+													<span className="mr-2">
+														Sending
+													</span>
+													<div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+												</>
+											) : (
+												"Submit"
+											)}
 										</Button>
 									</CardFooter>
 								</form>
@@ -184,7 +293,7 @@ export default function ContactSection() {
 											href="tel:+18005551234"
 											className="text-xl font-bold hover:underline"
 										>
-											(800) 555-1234
+											(346) 295-2884
 										</a>
 									</div>
 								</div>

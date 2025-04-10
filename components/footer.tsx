@@ -4,7 +4,7 @@ import { Sun } from "lucide-react";
 export default function Footer() {
 	return (
 		<footer className="border-t bg-muted/40">
-			<div className="container py-8 md:py-12">
+			<div className="container py-8 md:py-8">
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
 					<div className="flex flex-col gap-2">
 						<div className="flex items-center gap-2">
@@ -27,14 +27,6 @@ export default function Footer() {
 									className="text-muted-foreground hover:underline"
 								>
 									Blog
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="#"
-									className="text-muted-foreground hover:underline"
-								>
-									FAQ
 								</Link>
 							</li>
 						</ul>

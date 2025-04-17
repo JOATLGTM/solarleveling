@@ -1,10 +1,41 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowUp, CloudLightning, Factory } from "lucide-react";
 
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
 export default function IndustrySection() {
+	const sectionRef = useRef<HTMLElement | null>(null);
+
+	useLayoutEffect(() => {
+		if (!sectionRef.current) return;
+
+		const ctx = gsap.context(() => {
+			gsap.from("h2, h3, p", {
+				scrollTrigger: {
+					trigger: sectionRef.current, // trigger animation when #industry enters view
+					start: "top 80%", // when top of section hits 80% of viewport height
+					toggleActions: "play none none none", // only play once
+				},
+				opacity: 0,
+				y: 40,
+				duration: 2, // slow fade
+				stagger: 0.2,
+				ease: "power2.out",
+			});
+		}, sectionRef);
+
+		return () => ctx.revert(); // Clean up animations
+	}, []);
+
 	return (
-		<section id="industry" className="py-16 bg-muted/30">
+		<section id="industry" ref={sectionRef} className="py-16 bg-muted/30">
 			<div className="container">
 				<div className="flex flex-col gap-8">
 					<div className="text-center space-y-4">

@@ -2,9 +2,17 @@ import { Metadata } from "next";
 import BlogList from "@/components/blog-list";
 
 export const metadata: Metadata = {
-	title: "Blog | Solar Energy Solutions",
+	title: "Solar Energy Blog | Latest News & Insights | Solar Leveling",
 	description:
-		"Read our latest articles about solar energy, renewable power, and sustainable living.",
+		"Discover expert insights on solar energy, renewable power trends, and sustainable living. Stay updated with the latest solar technology news and tips.",
+	keywords:
+		"solar energy blog, renewable energy news, solar technology, sustainable living, solar power insights",
+	openGraph: {
+		title: "Solar Energy Blog | Latest News & Insights | Solar Leveling",
+		description:
+			"Discover expert insights on solar energy, renewable power trends, and sustainable living. Stay updated with the latest solar technology news and tips.",
+		type: "website",
+	},
 };
 
 export default function BlogsPage() {

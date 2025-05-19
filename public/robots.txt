@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /blogs
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+
+Sitemap: https://www.solarleveling.com/sitemap.xml 

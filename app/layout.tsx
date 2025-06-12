@@ -1,10 +1,10 @@
 import type React from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import "./globals.css";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -44,6 +44,7 @@ export default function RootLayout({
 						<Header />
 						<main className="flex-1">{children}</main>
 						<Footer />
+						<Analytics />
 					</div>
 				</ThemeProvider>
 			</body>
